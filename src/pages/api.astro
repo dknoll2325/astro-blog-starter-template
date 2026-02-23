@@ -1,12 +1,10 @@
+---
+import Layout from '../layouts/BlogPost.astro';
+---
 
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Simple API Test</title>
-</head>
-<body>
-
-<h2>Call API</h2>
+<Layout
+	title="Simple API Test"
+>
 <button onclick="callApi()">Call API</button>
 
 <p id="result"></p>
@@ -26,5 +24,4 @@ function callApi() {
 }
 </script>
 
-</body>
-</html>
+</Layout>
