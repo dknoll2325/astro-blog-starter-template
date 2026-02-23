@@ -14,6 +14,18 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 		<Header />
 		<main>
 			<h1>🧑‍🚀 Hello, Astronaut! Hello World</h1>
+			<button id="toggleButton">OK</button>
+			<script>
+    const button = document.getElementById("toggleButton");
+
+    button.addEventListener("click", function() {
+        if (button.textContent === "OK") {
+            button.textContent = "Not OK";
+        } else {
+            button.textContent = "OK";
+        }
+    });
+</script>
 			<p>
 				Welcome to the official <a href="https://astro.build/">Astro</a> blog starter template. This
 				template serves as a lightweight, minimally-styled starting point for anyone looking to build
