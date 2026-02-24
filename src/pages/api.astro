@@ -23,7 +23,7 @@ import Layout from '../layouts/BlogPost.astro';
     document.getElementById("btnPost").addEventListener("click", postTest);
 
     function getTest() {
-      fetch("http://localhost:3000/api/test")
+      fetch("https://simple-api.ptsteam01.workers.dev/api/test")
         .then(res => res.json())
         .then(data => {
           resultEl.textContent = JSON.stringify(data);
@@ -34,7 +34,7 @@ import Layout from '../layouts/BlogPost.astro';
     }
 
     function postTest() {
-      fetch("http://localhost:3000/api/echo", {
+      fetch("https://simple-api.ptsteam01.workers.dev/api/echo", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ testValue: "Hello API" })
