@@ -15,6 +15,8 @@ import Layout from '../layouts/BlogPost.astro';
 
 <script>
 function callApi() {
+	document.getElementById("result").textContent =
+                "Function call did not set result";
     fetch("http://localhost:3000/api/status")
         .then(response => response.json())
         .then(data => {
