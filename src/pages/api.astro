@@ -14,9 +14,10 @@ import Layout from '../layouts/BlogPost.astro';
 <p id="result">Waiting for API call...</p>
 
 <script>
+document.getElementById("result").textContent = "Script set result";
 function callApi() {
 	alert("clicked");
-	document.getElementById("result").textContent = "Function set result";
+	document.getElementById("result").textContent = "Function set result clicked";
     
 
 }
