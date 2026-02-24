@@ -1,44 +1,49 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Simple API Test</title>
+  <title>Simple API Test</title>
 </head>
 <body>
+  <h2>Test API</h2>
 
-<h2>Test API</h2>
+  <button id="btnGet">GET Test</button>
+  <button id="btnPost">POST Test</button>
 
-<button onclick="getTest()">GET Test</button>
-<button onclick="postTest()">POST Test</button>
+  <p id="result">1) element defined - No Value Set yet</p>
 
-<p id="result">1) element defined - No Value Set yet</p>
+  <script>
+    // Runs immediately after the <p> exists (script is after it)
+    const resultEl = document.getElementById("result");
+    resultEl.textContent = "2) Script Init - No value set";
 
-<script>
-document.getElementById("result").textContent = "2) Script Init - No value set"
+    document.getElementById("btnGet").addEventListener("click", getTest);
+    document.getElementById("btnPost").addEventListener("click", postTest);
 
-function getTest() {
-    fetch("http://localhost:3000/api/test")
+    function getTest() {
+      fetch("http://localhost:3000/api/test")
         .then(res => res.json())
         .then(data => {
-            document.getElementById("result").textContent =
-                JSON.stringify(data);
+          resultEl.textContent = JSON.stringify(data);
+        })
+        .catch(err => {
+          resultEl.textContent = "GET error: " + err;
         });
-}
+    }
 
-function postTest() {
-    fetch("http://localhost:3000/api/echo", {
+    function postTest() {
+      fetch("http://localhost:3000/api/echo", {
         method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ testValue: "Hello API" })
-    })
-    .then(res => res.json())
-    .then(data => {
-        document.getElementById("result").textContent =
-            JSON.stringify(data);
-    });
-}
-</script>
-
+      })
+        .then(res => res.json())
+        .then(data => {
+          resultEl.textContent = JSON.stringify(data);
+        })
+        .catch(err => {
+          resultEl.textContent = "POST error: " + err;
+        });
+    }
+  </script>
 </body>
 </html>
