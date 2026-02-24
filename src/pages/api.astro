@@ -1,26 +1,44 @@
----
-import Layout from '../layouts/BlogPost.astro';
----
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simple API Test</title>
+</head>
+<body>
 
-<Layout
-	title="Simple API Test"
-	description="API Status"
-	pubDate={new Date('February 22, 2026')}
-	heroImage="/Pegasus-Technology-Solutions-logo.png"
->
+<h2>Test API</h2>
 
-<button onclick="callApi()">Call API</button>
+<button onclick="getTest()">GET Test</button>
+<button onclick="postTest()">POST Test</button>
 
-<p id="result">Waiting for API call...</p>
-
-</Layout>
+<p id="result">1) element defined - No Value Set yet</p>
 
 <script>
-document.getElementById("result").textContent = "Script set result";
-function callApi() {
-	alert("clicked");
-	document.getElementById("result").textContent = "Function set result clicked";
-    
+document.getElementById("result").textContent = "2) Script Init - No value set"
 
+function getTest() {
+    fetch("http://localhost:3000/api/test")
+        .then(res => res.json())
+        .then(data => {
+            document.getElementById("result").textContent =
+                JSON.stringify(data);
+        });
+}
+
+function postTest() {
+    fetch("http://localhost:3000/api/echo", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ testValue: "Hello API" })
+    })
+    .then(res => res.json())
+    .then(data => {
+        document.getElementById("result").textContent =
+            JSON.stringify(data);
+    });
 }
 </script>
+
+</body>
+</html>
